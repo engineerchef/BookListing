@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:padding="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/buttonTextColor"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="6dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/section_logo_search" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/powered_by_google"
+            android:scaleType="fitEnd" />
+
+        <TextView
+            android:id="@+id/instruction_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="12dp"
+            android:text="@string/main_activity_instruction_text"
+            android:textSize="13sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="8dp"
+            android:background="@drawable/pile_o_books"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:background="#c2ffffff"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/search_title_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="8dp"
+                    android:text="@string/main_title_title_text"
+                    android:textAllCaps="true"
+                    android:textColor="@color/listItemBookTitle"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/search_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:hint="@string/edit_text_hint"
+                    android:paddingBottom="8dp"
+                    android:textColorHint="@color/searchEditTextHintColor" />
+
+                <TextView
+                    android:id="@+id/search_author_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingBottom="8dp"
+                    android:text="@string/main_author_title_text"
+                    android:textAllCaps="true"
+                    android:textColor="@color/listItemBookTitle"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/search_author_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:hint="@string/edit_text_hint"
+                    android:paddingBottom="8dp"
+                    android:textColorHint="@color/searchEditTextHintColor" />
+
+                <TextView
+                    android:id="@+id/search_subject_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingBottom="8dp"
+                    android:text="@string/main_subject_title_text"
+                    android:textAllCaps="true"
+                    android:textColor="@color/listItemBookTitle"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/search_subject_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:hint="@string/edit_text_hint"
+                    android:paddingBottom="8dp"
+                    android:textColorHint="@color/searchEditTextHintColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="16dp">
+
+                    <Button
+                        android:id="@+id/search_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="#965f7a9c"
+                        android:text="@string/main_search_button_text"
+                        android:textColor="@color/buttonTextColor" />
+
+                    <Button
+                        android:id="@+id/clear_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:background="#965f7a9c"
+                        android:text="@string/main_clear_button_text"
+                        android:textColor="@color/buttonTextColor" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</ScrollView>

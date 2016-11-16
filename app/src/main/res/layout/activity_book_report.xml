@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/buttonBackgroundColor"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingStart="16dp">
+
+        <ImageView
+            android:id="@+id/prev_arrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/prev_arrow"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/previous_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/prev_arrow"
+            android:layout_toRightOf="@+id/prev_arrow"
+            android:background="@color/buttonBackgroundColor"
+            android:clickable="true"
+            android:padding="16dp"
+            android:text="@string/previous_page"
+            android:textAllCaps="true"
+            android:textColor="@color/buttonTextColor" />
+
+        <TextView
+            android:id="@+id/next_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_toLeftOf="@+id/next_arrow"
+            android:layout_toStartOf="@+id/next_arrow"
+            android:background="@color/buttonBackgroundColor"
+            android:clickable="true"
+            android:gravity="end"
+            android:padding="16dp"
+            android:text="@string/next_page"
+            android:textAllCaps="true"
+            android:textColor="@color/buttonTextColor" />
+
+        <ImageView
+            android:id="@+id/next_arrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/next_arrow"
+            android:clickable="true" />
+    </RelativeLayout>
+
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+</LinearLayout>
