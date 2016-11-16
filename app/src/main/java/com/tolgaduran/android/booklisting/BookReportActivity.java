@@ -139,7 +139,7 @@ public class BookReportActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
-       URL url=null;
+       URL url = null;
 
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
