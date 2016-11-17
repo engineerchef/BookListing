@@ -27,6 +27,26 @@ public class BookObject {
         mThumbNailUrl = thumbNailUrl;
     }
 
+    public void setTitle(String title){
+        this.mTitle = title;
+    }
+
+    public void setAurthor(String author){
+        this.mAurthor = author;
+    }
+
+    public void setDescription(String description){
+        this.mDescription = description;
+    }
+
+    public void setUrl(String url){
+        this.mUrl = url;
+    }
+
+    public void setThumbNailUrl(String url){
+        this.mThumbNailUrl = url;
+    }
+
     public String getTitle() {return mTitle;}
 
     public String getAuthor(){
