@@ -60,21 +60,21 @@ public class BookReportActivity extends AppCompatActivity implements View.OnClic
 
         titleText = intent.getStringExtra("TITLE_SEARCH_STRING");
         if (!titleText.equals("")) {
-            titleText = getString(R.string.TITLE_QUERY_URL) + titleText; //Adding prefix for Title search to use in URL for google API.
+            titleText = getString(R.string.TITLE_QUERY_URL) + titleText;
         } else {
             titleText = "";
         }
 
         authorText = intent.getStringExtra("AUTHOR_SEARCH_STRING");
         if (!authorText.equals("")) {
-            authorText = getString(R.string.AUTHOR_QUERY_URL) + authorText; //Adding prefix for Author search to use in URL for google API.
+            authorText = getString(R.string.AUTHOR_QUERY_URL) + authorText;
         } else {
             authorText = "";
         }
 
         subjectText = intent.getStringExtra("SUBJECT_SEARCH_STRING");
         if (!subjectText.equals("")) {
-            subjectText = getString(R.string.SUBJECT_QUERY_URL) + subjectText; //Adding prefix for Subject search to use in URL for google API.
+            subjectText = getString(R.string.SUBJECT_QUERY_URL) + subjectText;
         } else {
             subjectText = "";
         }
