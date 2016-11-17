@@ -34,12 +34,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public static final boolean CheckInternetConn(Context context) {
+    public final boolean CheckInternetConn(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnectedOrConnecting()) {
             return true;
         } else {
+            Toast.makeText(this,"Please check your internet connection!!!",Toast.LENGTH_LONG).show();
             return false;
         }
     }
