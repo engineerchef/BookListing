@@ -28,6 +28,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         clear_btn.setOnClickListener(this);
     }
 
+   public static final boolean CheckInternetConn(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     @Override
     public void onClick(View v) {
 
@@ -35,25 +45,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         authorSearchEditText = (EditText) findViewById(R.id.search_author_text);
         subjectSearchEditText = (EditText) findViewById(R.id.search_subject_text);
 
-        if (v.getId() == R.id.search_btn) {
+        if (CheckInternetConn(this)) {
 
-            String titleString = formatSearchText(titleSearchEditText.getText().toString());
-            String authorString = formatSearchText(authorSearchEditText.getText().toString());
-            String subjectString = formatSearchText(subjectSearchEditText.getText().toString());
+            if (v.getId() == R.id.search_btn) {
 
-            if (titleString.equals("") && authorString.equals("") && subjectString.equals("")) {
-                Toast.makeText(MainActivity.this, getString(R.string.no_input_toast_message), Toast.LENGTH_LONG).show();
+                String titleString = formatSearchText(titleSearchEditText.getText().toString());
+                String authorString = formatSearchText(authorSearchEditText.getText().toString());
+                String subjectString = formatSearchText(subjectSearchEditText.getText().toString());
+
+                if (titleString.equals("") && authorString.equals("") && subjectString.equals("")) {
+                    Toast.makeText(MainActivity.this, getString(R.string.no_input_toast_message), Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent = new Intent(MainActivity.this, BookReportActivity.class);
+                    intent.putExtra("TITLE_SEARCH_STRING", titleString);
+                    intent.putExtra("AUTHOR_SEARCH_STRING", authorString);
+                    intent.putExtra("SUBJECT_SEARCH_STRING", subjectString);
+                    startActivity(intent);
+                }
             } else {
-                Intent intent = new Intent(MainActivity.this, BookReportActivity.class);
-                intent.putExtra("TITLE_SEARCH_STRING", titleString);
-                intent.putExtra("AUTHOR_SEARCH_STRING", authorString);
-                intent.putExtra("SUBJECT_SEARCH_STRING", subjectString);
-                startActivity(intent);
+                titleSearchEditText.setText("");
+                authorSearchEditText.setText("");
+                subjectSearchEditText.setText("");
             }
-        } else {
-            titleSearchEditText.setText("");
-            authorSearchEditText.setText("");
-            subjectSearchEditText.setText("");
         }
     }
 
