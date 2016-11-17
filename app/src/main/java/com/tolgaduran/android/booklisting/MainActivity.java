@@ -18,20 +18,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText titleSearchEditText;
     private EditText authorSearchEditText;
     private EditText subjectSearchEditText;
-//    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (CheckInternetConn(this)) {
-            search_btn = (Button) findViewById(R.id.search_btn);
-            search_btn.setOnClickListener(this);
+        search_btn = (Button) findViewById(R.id.search_btn);
+        search_btn.setOnClickListener(this);
 
-            clear_btn = (Button) findViewById(R.id.clear_btn);
-            clear_btn.setOnClickListener(this);
-        }
+        clear_btn = (Button) findViewById(R.id.clear_btn);
+        clear_btn.setOnClickListener(this);
     }
 
     public final boolean CheckInternetConn(Context context) {
@@ -40,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnectedOrConnecting()) {
             return true;
         } else {
-            Toast.makeText(this,"Please check your internet connection!!!",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please check your internet connection!!!", Toast.LENGTH_LONG).show();
             return false;
         }
     }
@@ -51,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         titleSearchEditText = (EditText) findViewById(R.id.search_title_text);
         authorSearchEditText = (EditText) findViewById(R.id.search_author_text);
         subjectSearchEditText = (EditText) findViewById(R.id.search_subject_text);
-
+        if (CheckInternetConn(this)) {
             if (v.getId() == R.id.search_btn) {
 
                 String titleString = formatSearchText(titleSearchEditText.getText().toString());
@@ -72,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 authorSearchEditText.setText("");
                 subjectSearchEditText.setText("");
             }
+        }
     }
 
     private String formatSearchText(String string) {
