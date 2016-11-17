@@ -139,41 +139,20 @@ public class BookReportActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
-       URL url = null;
+                if (v.getId() == R.id.previous_btn || v.getId() == R.id.prev_arrow) {
+                    index = index - MAX_HITS;
+                    gbRequestURL = getString(R.string.MAIN_QUERY_URL) + titleText + authorText + subjectText + getString(R.string.INDEX_URL) + String.valueOf(index) + getString(R.string.MAX_RESULTS_URL) + String.valueOf(MAX_HITS);
+                    BookSearchAsyncTask task = new BookSearchAsyncTask();
+                    task.execute();
 
-        HttpURLConnection urlConnection = null;
-        InputStream inputStream = null;
-        try {
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000 /* milliseconds */);
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
-            if (v.getId() == R.id.previous_btn || v.getId() == R.id.prev_arrow) {
-                index = index - MAX_HITS;
-                gbRequestURL = getString(R.string.MAIN_QUERY_URL) + titleText + authorText + subjectText + getString(R.string.INDEX_URL) + String.valueOf(index) + getString(R.string.MAX_RESULTS_URL) + String.valueOf(MAX_HITS);
-                BookSearchAsyncTask task = new BookSearchAsyncTask();
-                task.execute();
-            } else {
-                index = index + MAX_HITS;
-                gbRequestURL = getString(R.string.MAIN_QUERY_URL) + titleText + authorText + subjectText + getString(R.string.INDEX_URL) + String.valueOf(index) + getString(R.string.MAX_RESULTS_URL) + String.valueOf(MAX_HITS);
-                BookSearchAsyncTask task = new BookSearchAsyncTask();
-                task.execute();}
-            }catch(IOException e){
-                Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
-            }finally{
-                if (urlConnection != null) {
-                    urlConnection.disconnect();
+                } else {
+                    index = index + MAX_HITS;
+                    gbRequestURL = getString(R.string.MAIN_QUERY_URL) + titleText + authorText + subjectText + getString(R.string.INDEX_URL) + String.valueOf(index) + getString(R.string.MAX_RESULTS_URL) + String.valueOf(MAX_HITS);
+                    BookSearchAsyncTask task = new BookSearchAsyncTask();
+                    task.execute();
                 }
-                if (inputStream != null) {
-                    try {
-                        inputStream.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-    }
+
+        }
 
     private class BookSearchAsyncTask extends AsyncTask<URL, Void, ArrayList> {
 
@@ -225,6 +204,11 @@ public class BookReportActivity extends AppCompatActivity implements View.OnClic
 
         private String makeHttpRequest(URL url) throws IOException {
             String jsonResponse = "";
+
+            if (url==null){
+                return jsonResponse;
+            }
+
             HttpURLConnection urlConnection = null;
             InputStream inputStream = null;
             try {
