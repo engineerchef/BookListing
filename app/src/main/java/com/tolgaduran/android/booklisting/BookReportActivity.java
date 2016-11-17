@@ -92,9 +92,6 @@ public class BookReportActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    /**
-     * Update the screen to display information from the given {@link BookObject}.
-     */
     private void updateUi(final ArrayList<BookObject> books) {
 
         final BookAdapter bookAdapter = new BookAdapter(this, books);
@@ -139,20 +136,20 @@ public class BookReportActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
-                if (v.getId() == R.id.previous_btn || v.getId() == R.id.prev_arrow) {
-                    index = index - MAX_HITS;
-                    gbRequestURL = getString(R.string.MAIN_QUERY_URL) + titleText + authorText + subjectText + getString(R.string.INDEX_URL) + String.valueOf(index) + getString(R.string.MAX_RESULTS_URL) + String.valueOf(MAX_HITS);
-                    BookSearchAsyncTask task = new BookSearchAsyncTask();
-                    task.execute();
+        if (v.getId() == R.id.previous_btn || v.getId() == R.id.prev_arrow) {
+            index = index - MAX_HITS;
+            gbRequestURL = getString(R.string.MAIN_QUERY_URL) + titleText + authorText + subjectText + getString(R.string.INDEX_URL) + String.valueOf(index) + getString(R.string.MAX_RESULTS_URL) + String.valueOf(MAX_HITS);
+            BookSearchAsyncTask task = new BookSearchAsyncTask();
+            task.execute();
 
-                } else {
-                    index = index + MAX_HITS;
-                    gbRequestURL = getString(R.string.MAIN_QUERY_URL) + titleText + authorText + subjectText + getString(R.string.INDEX_URL) + String.valueOf(index) + getString(R.string.MAX_RESULTS_URL) + String.valueOf(MAX_HITS);
-                    BookSearchAsyncTask task = new BookSearchAsyncTask();
-                    task.execute();
-                }
-
+        } else {
+            index = index + MAX_HITS;
+            gbRequestURL = getString(R.string.MAIN_QUERY_URL) + titleText + authorText + subjectText + getString(R.string.INDEX_URL) + String.valueOf(index) + getString(R.string.MAX_RESULTS_URL) + String.valueOf(MAX_HITS);
+            BookSearchAsyncTask task = new BookSearchAsyncTask();
+            task.execute();
         }
+
+    }
 
     private class BookSearchAsyncTask extends AsyncTask<URL, Void, ArrayList> {
 
@@ -205,7 +202,7 @@ public class BookReportActivity extends AppCompatActivity implements View.OnClic
         private String makeHttpRequest(URL url) throws IOException {
             String jsonResponse = "";
 
-            if (url==null){
+            if (url == null) {
                 return jsonResponse;
             }
 
@@ -264,24 +261,21 @@ public class BookReportActivity extends AppCompatActivity implements View.OnClic
 
                 hits = baseJsonResponse.optInt("totalItems");
 
-                // If there are results in the itemsArray
                 if (itemsArray.length() > 0) {
 
-                    // Extract out the first feature (which is an earthquake)
                     for (int i = 0; i < itemsArray.length(); i++) {
                         JSONObject bookItem = itemsArray.getJSONObject(i);
                         JSONObject volumeInfo = bookItem.getJSONObject("volumeInfo");
                         JSONObject images = volumeInfo.optJSONObject("imageLinks");
                         JSONArray authors = volumeInfo.optJSONArray("authors");
 
-                        // Extract out the title, author, details, and urls.
                         String imageUrl;
                         String author;
                         String title = volumeInfo.optString("title");
                         if (authors != null) {
                             author = authors.optString(0);
                         } else {
-                            author = "unknown"; //Add unknown if no author string is found
+                            author = "unknown";
                         }
                         String description = volumeInfo.optString("description");
                         String url = volumeInfo.getString("infoLink");
@@ -293,7 +287,7 @@ public class BookReportActivity extends AppCompatActivity implements View.OnClic
                         BookObject bookObject = new BookObject(title, author, description, url, imageUrl);
                         books.add(bookObject);
                     }
-                    // Create a new {@link Event} object
+
                     return new ArrayList<>(books);
                 }
             } catch (JSONException e) {
