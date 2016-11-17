@@ -1,6 +1,9 @@
 package com.tolgaduran.android.booklisting;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,20 +18,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText titleSearchEditText;
     private EditText authorSearchEditText;
     private EditText subjectSearchEditText;
+//    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        search_btn = (Button) findViewById(R.id.search_btn);
-        search_btn.setOnClickListener(this);
+        if (CheckInternetConn(this)) {
+            search_btn = (Button) findViewById(R.id.search_btn);
+            search_btn.setOnClickListener(this);
 
-        clear_btn = (Button) findViewById(R.id.clear_btn);
-        clear_btn.setOnClickListener(this);
+            clear_btn = (Button) findViewById(R.id.clear_btn);
+            clear_btn.setOnClickListener(this);
+        }
     }
 
-   public static final boolean CheckInternetConn(Context context) {
+    public static final boolean CheckInternetConn(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnectedOrConnecting()) {
@@ -37,15 +43,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return false;
         }
     }
-    
+
     @Override
     public void onClick(View v) {
 
         titleSearchEditText = (EditText) findViewById(R.id.search_title_text);
         authorSearchEditText = (EditText) findViewById(R.id.search_author_text);
         subjectSearchEditText = (EditText) findViewById(R.id.search_subject_text);
-
-        if (CheckInternetConn(this)) {
 
             if (v.getId() == R.id.search_btn) {
 
@@ -67,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 authorSearchEditText.setText("");
                 subjectSearchEditText.setText("");
             }
-        }
     }
 
     private String formatSearchText(String string) {
